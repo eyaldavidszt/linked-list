@@ -203,19 +203,3 @@ function linkedListMaker(array, n = 0) {
 }
 
 const myList = linkedListMaker(["A", "B", "C"]);
-myList.prepend("before A");
-myList.append("after C");
-myList.pop();
-console.log(myList.contains("D"));
-myList.append("D");
-console.log(myList.find("B"));
-myList.toString();
-myList.append("E");
-myList.toString();
-myList.prepend("before before A");
-myList.toString();
-myList.insertAt(0, "can we go futher before?");
-myList.insertAt(1, "BBAA!");
-myList.toString();
-myList.removeAt(1);
-myList.toString();
