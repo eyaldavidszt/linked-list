@@ -144,6 +144,46 @@ function linkedListMaker(array, n = 0) {
       },
     };
   }
+  function inserter(object) {
+    return {
+      insertAt: (index, value) => {
+        let tmp = object;
+        let prev = tmp;
+        let count = 0;
+        while (count < index) {
+          prev = tmp;
+          tmp = tmp.next;
+          count += 1;
+        }
+        if (count == 0) {
+          object.next = nodeMaker(object.data, object.next);
+          object.data = value;
+        } else {
+          const node = nodeMaker(value, tmp);
+          prev.next = node;
+        }
+      },
+    };
+  }
+  function remover(object) {
+    return {
+      removeAt: (index) => {
+        let tmp = object;
+        let prev = tmp;
+        let count = 0;
+        while (count < index) {
+          prev = tmp;
+          tmp = tmp.next;
+          count += 1;
+        }
+        if (count != 0) {
+          prev.next = prev.next.next;
+        } else {
+          object.data = null;
+        }
+      },
+    };
+  }
 
   return Object.assign(
     obj,
@@ -156,7 +196,9 @@ function linkedListMaker(array, n = 0) {
     indexer(obj),
     container(obj),
     finder(obj),
-    toStringer(obj)
+    toStringer(obj),
+    inserter(obj),
+    remover(obj)
   );
 }
 
@@ -171,4 +213,9 @@ myList.toString();
 myList.append("E");
 myList.toString();
 myList.prepend("before before A");
+myList.toString();
+myList.insertAt(0, "can we go futher before?");
+myList.insertAt(1, "BBAA!");
+myList.toString();
+myList.removeAt(1);
 myList.toString();
